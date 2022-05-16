@@ -1,3 +1,4 @@
+  <?php session_start() ?>
   <html>
     <head>
 
@@ -51,7 +52,7 @@
 
         if(!empty($username) && !empty($password)) {
 
-            $q = $db->prepare("SELECT * FROM users WHERE username = :username");
+            $q = $db->prepare("SELECT * FROM etudiant WHERE username = :username");
             $q->execute(['username' => $username]);
             $result = $q->fetch();
             if($result){
@@ -60,12 +61,6 @@
 
                     $_SESSION['username']=$username;
                     $_SESSION['email']=$result['email'];
-                    //Pour mettre la date au format FR
-                    
-                    $date = date_create_from_format('Y-m-d H:i:s', $result['date']);
-                    $date = date_format($date, 'd/m/Y à H:i:s');
-                    $_SESSION['date']= $date;
-
 
                     echo "Mot de Passe bon !";?>
                     <meta http-equiv="refresh" content="0;url=index.php">
@@ -102,7 +97,7 @@
             include 'dbacces.php';
             global $db;
 
-            $q = $db -> prepare("INSERT INTO users(username,email,password) VALUES(:username,:email,:password)");
+            $q = $db -> prepare("INSERT INTO etudiant(username,email,password) VALUES(:username,:email,:password)");
             $q->execute([
                 'username' => $username,
                 'email' => $email,

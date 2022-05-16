@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -10,64 +11,78 @@
       <ul class="navigation">
       <li><a href="index.php">Accueil</a></li>
       <li><a href="page1.php">Connexion ou Inscription</a></li>
+      <?php if($_SESSION['username']){ ?>
+        <li>
+          <a href="test.php">
+            Bonjour, <?php echo $_SESSION['username'] ?>
+          </a> 
+        </li>
+      <?php         
+      } ?>
+
       </ul>
       <h1><i><b> CaR&T </b></i></h1>
-
-        <form method="get" action="index.php">
+        <!-- création du formulaire pour la recherche d'équipage -->
+        <form method="get" action="recherche.php">
           <div class="test">
 
           <label for="name"> destination: </label>
-          <select name="projet" id="projet" style="padding: 1px 20px;
-">
-          <!--?php
-              include "dbacces.php";
-              global $db;
-                if (mysqli_num_rows($result) > 0) {
-                // output data of each row
-                while($row = mysqli_fetch_assoc($result)) {
-                      $repere= $row["adresse"]; ?>
-                      
-                    <option value="projet"> < ?php echo  htmlentities($repere, ENT_HTML5,'UTF-8')  ?></option>
-               < ?php
-                    }    
-                }
-                    else {  echo "0 results";
-                }
-          ?--> 
-        
-       
-      
-             </select>
-          <!--<input type="select" name="D" minlength="1"; maxlength="100" size="1";required>
-            <option value="test">test</option> -->
+          <!-- recherche des destination dans la bdd -->
+          <select name="dst" id="dst" style="padding: 1px 20px;">
+          <?php
+            include "dbacces.php";
+            global $db;
+            $reponse = $db -> query('SELECT * FROM lieu');
+            while ($donnees = $reponse -> fetch()){
+                ?>
+                  <option value="<?php echo $donnees['type_lieu']; ?>">
+                    <?php echo $donnees['type_lieu']; ?>
+                    </option>
+          <?php } ?>
+  
+          </select>
+
           <br> <br>
 
           <label for="name"> depart: </label>
-          <input type="text" name="depart" maxlength="100" minlength="1" size="1";required>
+          <!-- recherche des depart dans la bdd -->
+          <select name="depart" id="depart" style="padding: 1px 20px;">
+            <?php
+              include "dbacces.php";
+              global $db;
+              $reponse = $db -> query('SELECT * FROM lieu');
+              while ($donnees = $reponse -> fetch()){
+                  ?>
+                    <option value="<?php echo $donnees['adresse']; ?>">
+                      <?php echo $donnees['adresse']; ?>
+                      </option>
+            <?php } ?>
+        
+          </select>
           <br> <br>
-          
-          <!--
-          <label for="name"> prix : </label>
-          <input type="number" name="N" min="1"; max="100000" ;required>
-          <br> <br>
-          -->
+
+
           
           <label for="name"> moyen de transport: </label>
-          <input type="text" name="char" maxlength="100" minlength="1" size="1";required>
+          <select name="mdt" id="mdt" style="padding: 1px 20px;">
+          <!-- recherche des moyen de transport dans la bdd -->
+            <?php
+              include "dbacces.php";
+              global $db;
+              $reponse = $db -> query('SELECT * FROM lieu');
+              while ($donnees = $reponse -> fetch()){
+                  ?>
+                    <option value="<?php echo $donnees['moyen_de_transport']; ?>">
+                      <?php echo $donnees['moyen_de_transport']; ?>
+                      </option>
+            <?php } ?>
+        
+          </select>
           <br> <br>
 
-          <!--
-          <label for = "name"> heure : </label>
-          <input type="text" name="char" maxlength="100" minlength="1" size="1";required>
-          </div>
-          <br> <br> <br>
-          -->
-          
-          <input type="submit" value="Rejoindre" id="rejoindre">
+          <input type="submit" value="Suivant" id="Suivant">
           <br>
 
-          <input type="submit" value="Quitter" id="quitter" >
-          <br>
         </form>
 
 
