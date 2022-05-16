@@ -63,7 +63,7 @@
                     $_SESSION['email']=$result['email'];
 
                     echo "Mot de Passe bon !";?>
-                    <meta http-equiv="refresh" content="0;url=index.php">
+                    <meta http-equiv="refresh" content="0;url=compte.php">
 
 
                 <?php } else{

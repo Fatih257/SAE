@@ -10,16 +10,20 @@
       <div class="banner">
       <ul class="navigation">
       <li><a href="index.php">Accueil</a></li>
-      <li><a href="page1.php">Connexion ou Inscription</a></li>
-      <!-- on verifie si une session est ouvert ou non -->
-      <?php if($_SESSION['username']){ ?>
-        <li>
-          <a href="test.php">
-            Bonjour, <?php echo $_SESSION['username'] ?>
-          </a> 
-        </li>
-      <?php         
-      } ?>
+        <!-- on verifie si une session est ouvert ou non -->
+        <?php if($_SESSION['username']){ ?>
+          <li>
+            <a href="test.php">
+              Bonjour, <?php echo $_SESSION['username'] ?>
+            </a> 
+          </li>
+        <?php         
+        } 
+        else {?>
+          <li><a href="page1.php">Connexion ou Inscription</a></li>
+        <?php 
+        } ?>
+   
 
       </ul>
       <h1><i><b> CaR&T </b></i></h1>
