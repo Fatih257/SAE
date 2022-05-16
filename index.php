@@ -10,10 +10,11 @@
       <div class="banner">
       <ul class="navigation">
       <li><a href="index.php">Accueil</a></li>
+
         <!-- on verifie si une session est ouvert ou non -->
-        <?php if($_SESSION['username']){ ?>
+        <?php if(isset($_SESSION)){ ?>
           <li>
-            <a href="test.php">
+            <a href="compte.php">
               Bonjour, <?php echo $_SESSION['username'] ?>
             </a> 
           </li>
@@ -27,6 +28,7 @@
 
       </ul>
       <h1><i><b> CaR&T </b></i></h1>
+      
         <!-- création du formulaire pour la recherche d'équipage -->
         <form method="get" action="recherche.php">
           <div class="test">

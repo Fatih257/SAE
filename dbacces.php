@@ -8,7 +8,6 @@
     try{
         $db = new PDO('mysql:host=' . HOST . ";dbname=" . DB_NAME, USER, PASS);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "<script>alert('connection établie')</script>";
     } catch(PDOException $e){
         echo $e;
     }

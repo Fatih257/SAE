@@ -11,7 +11,7 @@
       <ul class="navigation">
       <li><a href="index.php">Accueil</a></li>
       <!-- on verifie si une session est ouvert ou non -->
-      <?php if($_SESSION['username']){ ?>
+      <?php if(isset($_SESSION)){ ?>
         <li>
           <a href="compte.php">
             Bonjour, <?php echo $_SESSION['username'] ?>
@@ -24,4 +24,14 @@
 
       </ul>
       <h1><i><b> CaR&T </b></i></h1>
+      <p>
+        Votre pseudo : <?php echo $_SESSION['username']; ?> </br>
+        Votre e-mail : <?php echo $_SESSION['email']; ?> </br>
+       </p>
+
+
+
+
+
+
 
